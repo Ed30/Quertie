@@ -59,7 +59,6 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="G18-qi-xGa">
                                 <rect key="frame" x="163" y="147" width="51" height="31"/>
-                                <color key="onTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="darkModeSwitchDidChange:" destination="fKk-Bo-8dU" eventType="valueChanged" id="j5a-Wm-B5p"/>
                                 </connections>
@@ -75,6 +74,7 @@
                         <viewLayoutGuide key="safeArea" id="lZ7-6w-Mj8"/>
                     </view>
                     <connections>
+                        <outlet property="darkModeLabel" destination="4Xp-rp-JE6" id="bNX-l5-i5u"/>
                         <outlet property="darkModeSwitch" destination="G18-qi-xGa" id="DDc-eb-voO"/>
                     </connections>
                 </viewController>

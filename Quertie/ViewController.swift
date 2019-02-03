@@ -13,6 +13,8 @@ import AVFoundation
 
 class ViewController: MessagesViewController  {
 
+    
+    
     var messages : [Message] = []
     var member : Member!
     
@@ -26,13 +28,46 @@ class ViewController: MessagesViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        //NotificationCenter.default.addObserver(self, selector: Selector(("refreshGUI:")), name:NSNotification.Name(rawValue: "refresh"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshGUI) , name: NSNotification.Name("refresh"), object: nil)
+        setupChatView()
+        refreshGUI(nil)
+        
+        }
+    
+    
+    
+    
+    //Private functions
+    @objc private func refreshGUI(_ notification: NSNotification?) {
+        
+        let darkMode = UserDefaults.standard.bool(forKey: "darkMode")
+        blurEffect = UIBlurEffect(style: darkMode ? UIBlurEffect.Style.dark : UIBlurEffect.Style.regular)
+        setupCameraView()
+        
+        if let controller = self.navigationController {
+            let navBar = controller.navigationBar
+            
+            if darkMode {
+                navBar.barStyle = .blackTranslucent
+                navBar.tintColor = .orange
+            } else {
+                navBar.barStyle = .default
+                navBar.tintColor = UIColor(red: 0, green: 122/255, blue: 1.0, alpha: 1.0)
+            }
+            
+        }
+        
+    }
+    
+    private func setupChatView() {
         
         member = Member(name: .randomName, color: .random)
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messageInputBar.delegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+        messagesCollectionView.backgroundColor = .clear
         
         chatService = ChatService(member: member, onReceivedMessage: {
             [weak self] message in
@@ -43,15 +78,11 @@ class ViewController: MessagesViewController  {
         
         chatService.connect()
         
-        
-        
-        //view.backgroundColor = .red
-        messagesCollectionView.backgroundColor = .clear
-        
-        if let darkMode = isDarkModeOn {
-            blurEffect = UIBlurEffect(style: darkMode ? UIBlurEffect.Style.dark : UIBlurEffect.Style.regular)
-        }
-        
+    }
+    
+    
+    
+    private func setupCameraView() {
         
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         
@@ -60,30 +91,17 @@ class ViewController: MessagesViewController  {
         
         
         
-        //self.view.addSubview(blurEffectView.contentView)
-        
-        
-//        let image = UIImage(named: "wallpaper")
-//        let imgView = UIImageView(image: image)
-//        imgView.center.x = self.view.frame.midX
-//        imgView.center.y = self.view.frame.midY
-        //imgView.addSubview(blurEffectView)
-        //self.view.addSubview(imgView)
-        
-    
-        
         let cameraView  = CameraView(frame: self.view.frame)
         cameraView.addSubview(blurEffectView)
         self.view.addSubview(cameraView)
-       
-        self.view.bringSubviewToFront(messagesCollectionView)
-
         
-        }
+        self.view.bringSubviewToFront(messagesCollectionView)
+    }
 
 
     
 
+    //Outlet functions
     @IBAction func changeBlurriness(_ sender: Any) {
         blurEffectView.alpha = CGFloat(blurrinessSlider.value)
     }
@@ -136,6 +154,7 @@ extension ViewController : MessagesDisplayDelegate {
         let message = messages[indexPath.section]
         let color = message.member.color
         avatarView.backgroundColor = color
+        
         
     }
 }
