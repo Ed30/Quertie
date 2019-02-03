@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ad3-zP-Jdg">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Quertie-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Quertie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Quertie" largeTitleDisplayMode="never" id="9F2-US-2D6">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="hPN-vF-yS0">
+                            <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" id="ybR-kz-67y">
+                                <rect key="frame" x="16" y="5" width="83" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeBlurriness:" destination="BYZ-38-t0r" eventType="valueChanged" id="lY4-Vv-21W"/>
+                                </connections>
+                            </slider>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" image="settings" id="sJc-HN-cAK">
+                            <connections>
+                                <segue destination="fKk-Bo-8dU" kind="show" id="UaG-MQ-ywd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="blurrinessSlider" destination="ybR-kz-67y" id="pQG-kl-x3f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="992.79999999999995" y="27.436281859070466"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="fvQ-8X-pUS">
+            <objects>
+                <viewController id="fKk-Bo-8dU" customClass="SettingsViewController" customModule="Quertie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="naO-j3-blS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xp-rp-JE6">
+                                <rect key="frame" x="145.66666666666666" y="118" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="G18-qi-xGa">
+                                <rect key="frame" x="163" y="147" width="51" height="31"/>
+                                <color key="onTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="darkModeSwitchDidChange:" destination="fKk-Bo-8dU" eventType="valueChanged" id="j5a-Wm-B5p"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4Xp-rp-JE6" firstAttribute="top" secondItem="lZ7-6w-Mj8" secondAttribute="top" constant="30" id="25q-pV-JOZ"/>
+                            <constraint firstItem="4Xp-rp-JE6" firstAttribute="centerX" secondItem="naO-j3-blS" secondAttribute="centerX" id="WvJ-0b-eOC"/>
+                            <constraint firstItem="G18-qi-xGa" firstAttribute="centerX" secondItem="naO-j3-blS" secondAttribute="centerX" id="Xoi-Dq-q7u"/>
+                            <constraint firstItem="G18-qi-xGa" firstAttribute="top" secondItem="4Xp-rp-JE6" secondAttribute="bottom" constant="8" id="alM-6u-RXh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lZ7-6w-Mj8"/>
+                    </view>
+                    <connections>
+                        <outlet property="darkModeSwitch" destination="G18-qi-xGa" id="DDc-eb-voO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u5W-Sa-HHf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2144" y="-584"/>
+        </scene>
+        <!--Quertie-->
+        <scene sceneID="2gO-vH-FxS">
+            <objects>
+                <navigationController title="Quertie" automaticallyAdjustsScrollViewInsets="NO" id="ad3-zP-Jdg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chats" image="chats" selectedImage="chats" id="EQj-8B-C1K"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6A9-n2-4rD">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="1gL-zE-qTR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UJh-rL-j17" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="376.80000000000001" y="-670.61469265367316"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chats" width="30" height="30"/>
+        <image name="settings" width="30" height="30"/>
+    </resources>
+</document>
